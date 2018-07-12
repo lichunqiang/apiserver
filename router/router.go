@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"github.com/lichunqiang/apiserver/handler/sd"
 	w "github.com/lichunqiang/apiserver/router/middlewares"
+	"github.com/lichunqiang/apiserver/handler/user"
 )
 
 func InitRoute(g *gin.Engine, wm ...gin.HandlerFunc) *gin.Engine  {
@@ -31,6 +32,15 @@ func InitRoute(g *gin.Engine, wm ...gin.HandlerFunc) *gin.Engine  {
 		sdg.GET("/health", sd.HealthCheck)
 		//sdg.GET("/disk", sd.DiskCheck)
 		sdg.GET("/cpu", sd.CPUCheck)
+	}
+
+	u := g.Group("/v1/users")
+	{
+		u.GET("", user.List)
+		u.POST("", user.Create)
+		u.PUT("/:id", user.Update)
+		u.DELETE("/:id", user.Delete)
+		u.GET("/:id", user.Get)
 	}
 
 	return g

@@ -10,6 +10,7 @@ import (
 	"log"
 	"time"
 	"errors"
+	"github.com/lichunqiang/apiserver/model"
 )
 
 func initServer() *gin.Engine {
@@ -35,6 +36,9 @@ func main() {
 
 	//run mode
 	gin.SetMode(viper.GetString("runmode"))
+
+	model.DB.Init()
+	defer model.DB.Close()
 
 	r := initServer()
 
