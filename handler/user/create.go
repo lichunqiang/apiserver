@@ -2,62 +2,52 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/lichunqiang/apiserver/pkg/errno"
 	"github.com/lexkong/log"
-	"fmt"
+	"github.com/lexkong/log/lager"
 	. "github.com/lichunqiang/apiserver/handler"
+	"github.com/lichunqiang/apiserver/model"
+	"github.com/lichunqiang/apiserver/pkg/errno"
+	"github.com/lichunqiang/apiserver/util"
 )
 
 func Create(c *gin.Context) {
-	var r struct {
-		Username string `json:"username"`
-		Password string `json:"password"`
-	}
+	log.Info("User Create function called.", lager.Data{"X-Request-Id": util.GetReqId(c)})
 
-	if !c.Bind(&r) {
+	var r = CreateRequest{}
+
+	if err := c.Bind(&r); err != nil {
 		SendResponse(c, errno.ErrBind, nil)
 		return
 	}
-	log.Debugf("username is: [%s], password is: [%s]", r.Username, r.Password)
-
-	var err error
-
-	if r.Username == "" {
-		err = errno.New(errno.ErrUserNotFound, fmt.Errorf("username can not found in db: xx.xx.xx.xx")).Add(" add message")
-		log.Errorf(err, "Get an error")
-	}
-
-	if errno.IsErrUserNotFound(err) {
-		log.Debug("err type is ErrUserNotFound")
-	}
-
-	if r.Password == "" {
-		err = fmt.Errorf("password is empty")
-	}
-
-	if err != nil {
+	if err := r.checkParam(); err != nil {
 		SendResponse(c, err, nil)
 		return
 	}
-	b := map[string]string {
-		"name": "lighjt",
+
+	u := model.UserModel{
+		Username: r.Username,
+		Password: r.Password,
+	}
+	//validate
+	if err := u.Validate(); err != nil {
+		SendResponse(c, errno.ErrValidation, nil)
+		return
+	}
+	//encrypt password
+	if err := u.EncryptPassword(); err != nil {
+		SendResponse(c, errno.ErrEncrypt, nil)
+		return
 	}
 
-	SendResponse(c, nil, b)
-}
+	//insert
+	if err := u.Create(); err != nil {
+		SendResponse(c, errno.ErrDatabase, nil)
+		return
+	}
 
-func Get(c *gin.Context)  {
-	
-}
+	rsp := CreateResponse{
+		Username: u.Username,
+	}
 
-func Delete(c *gin.Context)  {
-	
-}
-
-func Update(c *gin.Context)  {
-	
-}
-
-func List(c *gin.Context) {
-
+	SendResponse(c, nil, rsp)
 }

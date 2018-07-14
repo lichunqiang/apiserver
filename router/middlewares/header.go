@@ -2,8 +2,8 @@ package middlewares
 
 import (
 	"github.com/gin-gonic/gin"
-	"time"
 	"net/http"
+	"time"
 )
 
 func NoCache(c *gin.Context) {

@@ -1,10 +1,10 @@
 package model
 
 import (
-	"github.com/jinzhu/gorm"
 	"fmt"
-	"github.com/spf13/viper"
+	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"github.com/spf13/viper"
 )
 
 type Database struct {
@@ -47,7 +47,6 @@ func InitSelfDB() *gorm.DB {
 		viper.GetString("db.password"),
 		viper.GetString("db.addr"),
 		viper.GetString("db.name"),
-
 	)
 }
 
@@ -61,7 +60,6 @@ func InitDockerDB() *gorm.DB {
 		viper.GetString("db.password"),
 		viper.GetString("db.addr"),
 		viper.GetString("db.name"),
-
 	)
 }
 

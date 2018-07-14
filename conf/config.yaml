@@ -5,6 +5,13 @@ url: http://127.0.0.1:8000   # pingServer函数请求的API服务器的ip:port
 max_ping_count: 10           # pingServer函数try的次数
 gormlog: true
 
+jwt_secret: Rtg8BPKNEf2mB4mgvKONGPZZQSaJWNLijxR42qRgq0iBb5
+
+tls:
+  addr: :8001
+  cert: conf/server.crt
+  key: conf/server.key
+
 log:
   writers: file,stdout
   logger_level: DEBUG
@@ -17,13 +24,13 @@ log:
 
 db:
   name: test
-  addr: 192.168.10.15:3306
-  username: vagrant
-  password: vagrant
+  addr: 127.0.0.1:3306
+  username: root
+  password:
 
 
 docker_db:
   name: test
-  addr: 192.168.10.15:3306
-  username: vagrant
-  password: vagrant
+  addr: 127.0.0.1:3306
+  username: root
+  password:

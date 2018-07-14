@@ -2,13 +2,13 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
 	"github.com/lichunqiang/apiserver/handler/sd"
-	w "github.com/lichunqiang/apiserver/router/middlewares"
 	"github.com/lichunqiang/apiserver/handler/user"
+	w "github.com/lichunqiang/apiserver/router/middlewares"
+	"net/http"
 )
 
-func InitRoute(g *gin.Engine, wm ...gin.HandlerFunc) *gin.Engine  {
+func InitRoute(g *gin.Engine, wm ...gin.HandlerFunc) *gin.Engine {
 	g.Use(gin.Recovery())
 	g.Use(gin.Logger())
 
@@ -27,20 +27,23 @@ func InitRoute(g *gin.Engine, wm ...gin.HandlerFunc) *gin.Engine  {
 		})
 	})
 
+	g.POST("/login", user.Login)
+
+	u := g.Group("/v1/users")
+	//u.Use(w.AuthMiddleware())
+	{
+		//u.GET("", user.List)
+		u.POST("", user.Create)
+		//u.PUT("/:id", user.Update)
+		u.DELETE("/:id", user.Delete)
+		u.GET("/:id", user.Get)
+	}
+
 	sdg := g.Group("/sd")
 	{
 		sdg.GET("/health", sd.HealthCheck)
 		//sdg.GET("/disk", sd.DiskCheck)
 		sdg.GET("/cpu", sd.CPUCheck)
-	}
-
-	u := g.Group("/v1/users")
-	{
-		u.GET("", user.List)
-		u.POST("", user.Create)
-		u.PUT("/:id", user.Update)
-		u.DELETE("/:id", user.Delete)
-		u.GET("/:id", user.Get)
 	}
 
 	return g

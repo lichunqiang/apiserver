@@ -25,9 +25,15 @@
 #   unused-packages = true
 
 
+required = ["github.com/gin-gonic/gin"]
+
 [prune]
   go-tests = true
   unused-packages = true
+
+[[constraint]]
+  name = "github.com/gin-gonic/gin"
+  version = "^1.2"
 
 [[constraint]]
   name = "github.com/spf13/viper"
@@ -40,3 +46,11 @@
 [[constraint]]
   name = "github.com/jinzhu/gorm"
   version = "1.9.1"
+
+[[constraint]]
+  name = "github.com/satori/go.uuid"
+  version = "1.2.0"
+
+[[constraint]]
+  name = "github.com/dgrijalva/jwt-go"
+  version = "3.2.0"

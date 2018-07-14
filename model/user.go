@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/lichunqiang/apiserver/pkg/auth"
-	"github.com/lichunqiang/apiserver/pkg/constvar"
+	"gopkg.in/go-playground/validator.v9"
 )
 
 type UserModel struct {
@@ -41,14 +41,21 @@ func (u *UserModel) EncryptPassword() (err error) {
 
 //validate the model
 func (u *UserModel) Validate() error {
-	validate := Validator.New()
+	validate := validator.New()
 	return validate.Struct(u)
 }
 
 //get user by username
 func GetUser(username string) (*UserModel, error) {
 	u := &UserModel{}
-	d := DB.Self.Where("username = ?", username).First(&u)
+	d := DB.Self.First(&u, "username = ?", username)
+
+	return u, d.Error
+}
+
+func GetUserById(id uint64) (*UserModel, error) {
+	u := &UserModel{}
+	d := DB.Self.Where("id = ?", id).First(&u)
 
 	return u, d.Error
 }
@@ -61,11 +68,11 @@ func DeleteUser(id uint64) error {
 	return DB.Self.Delete(&user).Error
 }
 
-func ListUser(username string, offset, limit int) ([]*UserModel, uint64, error) {
-	if limit == 0 || limit > constvar.MaxPageLimit {
-		limit = constvar.DefaultLimit
-	}
-
-	users := make([]*UserModel)
-
-}
+//func ListUser(username string, offset, limit int) ([]*UserModel, uint64, error) {
+//	if limit == 0 || limit > constvar.MaxPageLimit {
+//		limit = constvar.DefaultLimit
+//	}
+//
+//users := make([]*UserModel)
+//
+//}

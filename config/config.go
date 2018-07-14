@@ -1,10 +1,10 @@
 package config
 
 import (
-	"github.com/spf13/viper"
-	"strings"
 	"github.com/fsnotify/fsnotify"
 	"github.com/lexkong/log"
+	"github.com/spf13/viper"
+	"strings"
 )
 
 type Config struct {
@@ -50,7 +50,7 @@ func (c *Config) initLog() {
 	log.InitWithConfig(&cfg)
 }
 
-//热加载	
+//热加载
 func (c *Config) watch() {
 	viper.WatchConfig()
 	viper.OnConfigChange(func(in fsnotify.Event) {
