@@ -24,13 +24,13 @@ log:
 
 db:
   name: test
-  addr: 127.0.0.1:3306
-  username: root
-  password:
+  addr: 192.168.241.145:3306
+  username: remote
+  password: 123456
 
 
 docker_db:
   name: test
-  addr: 127.0.0.1:3306
-  username: root
-  password:
+  addr: 192.168.241.145:3306
+  username: remote
+  password: 123456

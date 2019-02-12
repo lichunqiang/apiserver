@@ -2,7 +2,7 @@ package util
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/lichunqiang/apiserver/pkg/constvar"
+	"apiserver/pkg/constvar"
 	"github.com/teris-io/shortid"
 )
 

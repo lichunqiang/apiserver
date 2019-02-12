@@ -4,10 +4,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
 	"github.com/lexkong/log/lager"
-	. "github.com/lichunqiang/apiserver/handler"
-	"github.com/lichunqiang/apiserver/model"
-	"github.com/lichunqiang/apiserver/pkg/errno"
-	"github.com/lichunqiang/apiserver/util"
+	. "apiserver/handler"
+	"apiserver/model"
+	"apiserver/pkg/errno"
+	"apiserver/util"
 )
 
 func Create(c *gin.Context) {

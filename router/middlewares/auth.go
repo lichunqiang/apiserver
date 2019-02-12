@@ -2,8 +2,8 @@ package middlewares
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/lichunqiang/apiserver/handler"
-	"github.com/lichunqiang/apiserver/pkg/token"
+	"apiserver/handler"
+	"apiserver/pkg/token"
 )
 
 func AuthMiddleware() gin.HandlerFunc {

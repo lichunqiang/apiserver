@@ -2,7 +2,7 @@ package middlewares
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/lichunqiang/apiserver/pkg/constvar"
+	"apiserver/pkg/constvar"
 	"github.com/satori/go.uuid"
 )
 
