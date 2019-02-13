@@ -1,4 +1,4 @@
-module apiserver
+module github.com/lichunqiang/apiserver
 
 require (
 	cloud.google.com/go v0.36.0 // indirect

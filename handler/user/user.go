@@ -1,8 +1,8 @@
 package user
 
 import (
-	"apiserver/model"
-	"apiserver/pkg/errno"
+	"github.com/lichunqiang/apiserver/model"
+	"github.com/lichunqiang/apiserver/pkg/errno"
 )
 
 type CreateRequest struct {

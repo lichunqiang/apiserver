@@ -23,7 +23,7 @@ func (c *Config) initConfig() error {
 	viper.SetConfigType("yaml")
 	//读取匹配的环境变量
 	viper.AutomaticEnv()
-	viper.SetEnvPrefix("apiserver")
+	viper.SetEnvPrefix("github.com/lichunqiang/apiserver")
 	replacer := strings.NewReplacer(".", "_")
 	viper.SetEnvKeyReplacer(replacer)
 

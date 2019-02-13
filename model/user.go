@@ -1,7 +1,7 @@
 package model
 
 import (
-	"apiserver/pkg/auth"
+	"github.com/lichunqiang/apiserver/pkg/auth"
 	"gopkg.in/go-playground/validator.v9"
 )
 

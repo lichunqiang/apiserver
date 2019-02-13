@@ -2,9 +2,9 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
-	. "apiserver/handler"
-	"apiserver/model"
-	"apiserver/pkg/errno"
+	. "github.com/lichunqiang/apiserver/handler"
+	"github.com/lichunqiang/apiserver/model"
+	"github.com/lichunqiang/apiserver/pkg/errno"
 	"strconv"
 )
 

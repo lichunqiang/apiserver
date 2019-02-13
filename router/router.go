@@ -2,9 +2,9 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"apiserver/handler/sd"
-	"apiserver/handler/user"
-	w "apiserver/router/middlewares"
+	"github.com/lichunqiang/apiserver/handler/sd"
+	"github.com/lichunqiang/apiserver/handler/user"
+	w "github.com/lichunqiang/apiserver/router/middlewares"
 	"net/http"
 )
 

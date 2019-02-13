@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
-	"apiserver/config"
-	"apiserver/model"
-	"apiserver/pkg/version"
-	"apiserver/router"
-	"apiserver/router/middlewares"
+	"github.com/lichunqiang/apiserver/config"
+	"github.com/lichunqiang/apiserver/model"
+	"github.com/lichunqiang/apiserver/pkg/version"
+	"github.com/lichunqiang/apiserver/router"
+	"github.com/lichunqiang/apiserver/router/middlewares"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"net/http"
@@ -31,7 +31,7 @@ func initServer() *gin.Engine {
 }
 
 var (
-	filePath = pflag.StringP("config", "c", "", "apiserver config file path.")
+	filePath = pflag.StringP("config", "c", "", "github.com/lichunqiang/apiserver config file path.")
 
 	showVersion = pflag.BoolP("version", "v", false, "show version info")
 )
@@ -66,7 +66,7 @@ func main() {
 		if err := pingServer(); err != nil {
 			log.Fatal("No response", err)
 		}
-		log.Debug("Apiserver startted successfully.")
+		log.Debug("github.com/lichunqiang/apiserver startted successfully.")
 	}()
 
 	//https server
